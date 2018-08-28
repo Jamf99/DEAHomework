@@ -27,7 +27,7 @@ public class Stack<T> implements IStack<T>{
 	@Override
 	public T pop() {
 		if(isEmpty()) {
-			throw new NoSuchElementException("The stuck is already empty");
+			throw new NoSuchElementException("The stack is already empty");
 		}else {
 			T element = top.getElement();
 			top = top.getNext();
@@ -39,7 +39,7 @@ public class Stack<T> implements IStack<T>{
 	@Override
 	public T getTop() {
 		if(isEmpty()) {
-			throw new NoSuchElementException("The stuck is already empty");
+			throw new NoSuchElementException("The stack is already empty");
 		}else {
 			T element = top.getElement();
 			return element;
