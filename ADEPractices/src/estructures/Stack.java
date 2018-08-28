@@ -15,7 +15,7 @@ public class Stack<T> implements IStack<T>{
 	public int getLength() {
 		return length;
 	}
-
+	
 	@Override
 	public void push(T element) {
 		if(element != null) {

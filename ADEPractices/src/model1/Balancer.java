@@ -4,15 +4,24 @@ import estructures.Stack;
 
 public class Balancer {
 	
-	private static Stack<String> string;
+	private static Stack<String> stack;
 
-	public Stack<String> getString() {
-		return string;
+	private static boolean verifyOpuest(String c, String b) {
+		if(c.equals("(") && b.equals(")")){
+			return true;
+		}
+		if(c.equals("{") && b.equals("}")){
+			return true;
+		}
+		if(c.equals("[") && b.equals("]")){
+			return true;
+		}
+		return false;
 	}
 	
 	public static String isBalanced(String string) {
-		String balanced = "";
-		boolean flag = false;
+		stack = new Stack<String>();
+		String balanced = "F";
 		if(string == null) {
 			return "F";
 		}else if(string == "") {
@@ -20,16 +29,24 @@ public class Balancer {
 		}
 		String[] aux = string.split("");
 		for(int i = 0; i<aux.length; i++) {
-			if(aux[i] == "(" || aux[i] == ")" || aux[i] == "{" || aux[i] == "}" || aux[i] == "[" || aux[i] == "]") {
-				flag = true;
+			if(aux[i].equals("(") || aux[i].equals("{") || aux[i].equals("[")) {
+				stack.push(aux[i]);
+			}else if(aux[i].equals(")") || aux[i].equals("}") || aux[i].equals("]")) {
+				if(verifyOpuest(stack.getTop(), aux[i])) {
+					stack.pop();
+				}else {
+					return "F";
+				}
 			}
 		}
-		return balanced;
-				
+		if(stack.isEmpty()) {
+			balanced = "T";
+		}
+		return balanced;		
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(isBalanced("{[asasa]}"));
+		System.out.println(isBalanced("{[hola]}"));
 	}
 
 }
