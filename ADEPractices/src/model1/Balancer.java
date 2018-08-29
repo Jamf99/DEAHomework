@@ -1,5 +1,7 @@
 package model1;
 
+import java.util.NoSuchElementException;
+
 import estructures.Stack;
 
 public class Balancer {
@@ -19,7 +21,7 @@ public class Balancer {
 		return false;
 	}
 	
-	public static String isBalanced(String string) {
+	public static String isBalanced(String string) throws NoSuchElementException {
 		stack = new Stack<String>();
 		String balanced = "F";
 		if(string == null) {
@@ -32,9 +34,13 @@ public class Balancer {
 			if(aux[i].equals("(") || aux[i].equals("{") || aux[i].equals("[")) {
 				stack.push(aux[i]);
 			}else if(aux[i].equals(")") || aux[i].equals("}") || aux[i].equals("]")) {
-				if(verifyOpuest(stack.getTop(), aux[i])) {
-					stack.pop();
-				}else {
+				try {
+					if(verifyOpuest(stack.getTop(), aux[i])) {
+						stack.pop();
+					}else {
+						return "F";
+					}
+				}catch(NoSuchElementException e) {
 					return "F";
 				}
 			}
@@ -46,7 +52,7 @@ public class Balancer {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(isBalanced("{[hola]}"));
+		System.out.println(isBalanced("hola]}"));
 	}
 
 }
