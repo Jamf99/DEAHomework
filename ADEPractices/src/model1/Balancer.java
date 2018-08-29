@@ -1,5 +1,12 @@
 package model1;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.NoSuchElementException;
 
 import estructures.Stack;
@@ -51,12 +58,25 @@ public class Balancer {
 		return balanced;		
 	}
 	
-	public static void main(String[] args) {
-		if(isBalanced("{hfsdfhsdfsd}[dfda](rf)")) {
-			System.out.println("T");
-		}else {
-			System.out.println("F");
+	public static void main(String[] args) throws NumberFormatException, IOException {
+//		File file = new File("docs/testCases.txt");
+//		FileReader fr = new FileReader(file);
+//		
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		long cases = Long.parseLong(in.readLine());
+		for(int i = 0; i<cases; ++i) {
+			String line = in.readLine();
+			if(isBalanced(line)) {
+				out.write("T\n");
+			}else {
+				out.write("F\n");
+			}
 		}
+		
+		in.close();
+		out.close();
 	}
 
 }
