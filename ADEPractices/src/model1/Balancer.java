@@ -21,13 +21,13 @@ public class Balancer {
 		return false;
 	}
 	
-	public static String isBalanced(String string) throws NoSuchElementException {
+	public static boolean isBalanced(String string) throws NoSuchElementException {
+		boolean balanced = false;
 		stack = new Stack<String>();
-		String balanced = "F";
 		if(string == null) {
-			return "F";
+			return false;
 		}else if(string == "") {
-			return "T";
+			return true;
 		}
 		String[] aux = string.split("");
 		for(int i = 0; i<aux.length; i++) {
@@ -38,21 +38,25 @@ public class Balancer {
 					if(verifyOpuest(stack.getTop(), aux[i])) {
 						stack.pop();
 					}else {
-						return "F";
+						return false;
 					}
 				}catch(NoSuchElementException e) {
-					return "F";
+					return false;
 				}
 			}
 		}
 		if(stack.isEmpty()) {
-			balanced = "T";
+			balanced = true;
 		}
 		return balanced;		
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(isBalanced("hola]}"));
+		if(isBalanced("{hfsdfhsdfsd}[dfda](rf)")) {
+			System.out.println("T");
+		}else {
+			System.out.println("F");
+		}
 	}
 
 }
