@@ -66,7 +66,7 @@ public class Balancer {
 		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		long cases = Long.parseLong(in.readLine());
-		for(int i = 0; i<cases; ++i) {
+		for(long i = 0; i<cases; ++i) {
 			String line = in.readLine();
 			if(isBalanced(line)) {
 				out.write("T\n");
